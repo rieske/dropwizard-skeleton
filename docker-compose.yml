@@ -1,0 +1,8 @@
+service:
+  build: .
+  volumes:
+    - ./configuration/:/opt/service/configuration:ro
+  command: /opt/service/configuration/production.yml
+  ports:
+    - "8080:8080"
+    - "8081:8081"
