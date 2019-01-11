@@ -1,16 +1,14 @@
 package lt.rieske.skeleton.resources;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.Response;
-
+import io.dropwizard.testing.junit.ResourceTestRule;
+import lt.rieske.skeleton.api.Example;
 import org.eclipse.jetty.http.HttpStatus;
 import org.junit.ClassRule;
 import org.junit.Test;
 
-import io.dropwizard.testing.junit.ResourceTestRule;
-import lt.rieske.skeleton.api.Example;
+import javax.ws.rs.client.WebTarget;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class ExampleResourceTest {
 
@@ -27,9 +25,9 @@ public class ExampleResourceTest {
 
     @Test
     public void returnsNotFoundWhenRecentPurchasesForUserDoNotExist() {
-    	String bar = "abc";
+    	var bar = "abc";
     	
-        Response response = exampleResource
+        var response = exampleResource
                 .path(bar).request()
                 .get();
 
