@@ -73,14 +73,8 @@ task copyDependenciesToDistribution(type: Copy) {
     into "build/distributions/lib"
 }
 
-task copyJarToDistribution(type: Copy) {
-    dependsOn jar
-    from jar.archivePath
-    into "$distsDir"
-}
-
 assemble {
-    dependsOn copyJarToDistribution, copyDependenciesToDistribution
+    dependsOn copyDependenciesToDistribution
 }
 
 run {
