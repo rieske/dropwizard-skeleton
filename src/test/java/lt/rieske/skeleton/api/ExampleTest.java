@@ -1,16 +1,13 @@
 package lt.rieske.skeleton.api;
 
-import static io.dropwizard.testing.FixtureHelpers.fixture;
-import static org.assertj.core.api.Assertions.assertThat;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import io.dropwizard.jackson.Jackson;
+import org.junit.Test;
 
 import java.io.IOException;
 
-import org.junit.Test;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import io.dropwizard.jackson.Jackson;
-import lt.rieske.skeleton.api.Example;
+import static io.dropwizard.testing.FixtureHelpers.fixture;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class ExampleTest {
 
@@ -18,9 +15,9 @@ public class ExampleTest {
 
     @Test
     public void serializesToJSON() throws IOException {
-        Example purchase = new Example(11L, "foobar");
+        var purchase = new Example(11L, "foobar");
 
-        final String expected = MAPPER.writeValueAsString(
+        var expected = MAPPER.writeValueAsString(
                 MAPPER.readValue(fixture("fixtures/example.json"), Example.class));
 
         assertThat(MAPPER.writeValueAsString(purchase)).isEqualTo(expected);

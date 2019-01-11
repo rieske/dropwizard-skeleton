@@ -17,6 +17,6 @@ public class SkeletonService extends Application<ServiceConfiguration> {
 
 	@Override
 	public void run(ServiceConfiguration configuration, Environment environment) {
-		environment.jersey().register(new ExampleResource(configuration.foo));
+		environment.jersey().register(new ExampleResource(configuration.getFoo()));
 	}
 }

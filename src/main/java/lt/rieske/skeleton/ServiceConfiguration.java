@@ -1,17 +1,15 @@
 package lt.rieske.skeleton;
 
+import io.dropwizard.Configuration;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import io.dropwizard.Configuration;
-
-public class ServiceConfiguration extends Configuration {
+@Data
+@EqualsAndHashCode(callSuper = true)
+class ServiceConfiguration extends Configuration {
 
     @NotNull
-    public final Integer foo;
-
-    public ServiceConfiguration(@JsonProperty("foo") Integer foo) {
-        this.foo = foo;
-    }
+    private final Integer foo;
 }
