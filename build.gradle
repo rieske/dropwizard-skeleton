@@ -28,8 +28,8 @@ project.group = 'lt.rieske.skeleton'
 project.archivesBaseName = 'dropwizard-skeleton'
 project.version = "DEV-SNAPSHOT"
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = 11
+targetCompatibility = 11
 
 mainClassName = 'lt.rieske.skeleton.SkeletonService'
 
