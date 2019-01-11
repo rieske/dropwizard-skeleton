@@ -3,8 +3,6 @@ package lt.rieske.skeleton;
 import io.dropwizard.client.JerseyClientBuilder;
 import io.dropwizard.testing.ResourceHelpers;
 import io.dropwizard.testing.junit.DropwizardAppRule;
-import lt.rieske.skeleton.SkeletonService;
-import lt.rieske.skeleton.ServiceConfiguration;
 
 import org.junit.ClassRule;
 import org.junit.Test;
