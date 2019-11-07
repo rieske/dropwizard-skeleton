@@ -22,6 +22,15 @@ repositories {
     mavenCentral()
 }
 
+sourceSets {
+    componentTest {
+        java.srcDir file("src/component-test/java")
+        resources.srcDir file("src/component-test/resources")
+    }
+}
+
+task componentTest(type: Test)
+
 tasks {
     wrapper {
         gradleVersion = "5.6.4"
@@ -42,13 +51,27 @@ tasks {
         configFile = new File(rootDir, "checkstyle.xml")
     }
 
+    test {
+        useJUnitPlatform()
+    }
+
+    componentTest {
+        dependsOn(test)
+        testClassesDirs = sourceSets.componentTest.output.classesDirs
+        classpath = sourceSets.componentTest.runtimeClasspath
+        testLogging.showStandardStreams = true
+        testLogging.exceptionFormat = "full"
+        exclude("**/**Test.class")
+    }
+
+    check.dependsOn(componentTest)
+
     run {
         args 'server', './configuration/production.yml'
     }
 
     run.dependsOn check
 }
-
 
 dependencies {
     compileOnly "org.projectlombok:lombok:${lombokVersion}"
@@ -60,9 +83,12 @@ dependencies {
     implementation("javax.xml.bind:jaxb-api:2.2.11")
     implementation("javax.activation:activation:1.1.1")
 
-    testImplementation "junit:junit:4.12"
-    testImplementation "org.assertj:assertj-core:3.14.0"
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.5.2")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.5.2")
     testImplementation "io.dropwizard:dropwizard-testing:${dropwizardVersion}"
-    testImplementation "org.mockito:mockito-core:3.1.0"
+
+    componentTestImplementation(configurations.implementation)
+    componentTestImplementation("org.testcontainers:testcontainers:1.12.3")
+    componentTestImplementation("io.rest-assured:rest-assured:4.1.2")
 }
 

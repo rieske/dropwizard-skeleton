@@ -2,19 +2,19 @@ package lt.rieske.skeleton.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.dropwizard.jackson.Jackson;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
 import static io.dropwizard.testing.FixtureHelpers.fixture;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class ExampleTest {
+class ExampleTest {
 
     private static final ObjectMapper MAPPER = Jackson.newObjectMapper();
 
     @Test
-    public void serializesToJSON() throws IOException {
+    void serializesToJSON() throws IOException {
         var purchase = new Example(11L, "foobar");
 
         var expected = MAPPER.writeValueAsString(
