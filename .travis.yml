@@ -1,5 +1,12 @@
 language: java
 jdk:
   - openjdk11
+
+before_install:
+  - sudo rm /usr/local/bin/docker-compose
+  - curl -L https://github.com/docker/compose/releases/download/1.24.1/docker-compose-Linux-x86_64 > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
+
 after_success:
   - ./gradlew jacocoTestReport coveralls
