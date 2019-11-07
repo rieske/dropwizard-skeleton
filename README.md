@@ -1,7 +1,7 @@
 Building and running
 ====
 
-[![Build Status](https://travis-ci.org/rieske/dropwizard-skeleton.png?branch=master)](https://travis-ci.org/rieske/dropwizard-skeleton) [![Coverage Status](https://coveralls.io/repos/rieske/dropwizard-skeleton/badge.svg?branch=master)](https://coveralls.io/r/rieske/dropwizard-skeleton?branch=master)
+[![Actions Status](https://github.com/rieske/dropwizard-skeleton/workflows/build/badge.svg)](https://github.com/rieske/dropwizard-skeleton/actions) [![Build Status](https://travis-ci.org/rieske/dropwizard-skeleton.png?branch=master)](https://travis-ci.org/rieske/dropwizard-skeleton) [![Coverage Status](https://coveralls.io/repos/rieske/dropwizard-skeleton/badge.svg?branch=master)](https://coveralls.io/r/rieske/dropwizard-skeleton?branch=master)
 
 Using docker
 ----

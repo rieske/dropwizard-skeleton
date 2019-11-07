@@ -3,9 +3,6 @@ buildscript {
         dropwizardVersion = '1.3.16'
         lombokVersion = '1.18.10'
     }
-    repositories {
-        mavenCentral()
-    }
 }
 
 plugins {
@@ -17,69 +14,55 @@ plugins {
     id "com.github.kt3k.coveralls" version "2.8.4"
 }
 
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+}
+
 repositories {
     mavenCentral()
 }
 
-project.group = 'lt.rieske.skeleton'
-project.archivesBaseName = 'dropwizard-skeleton'
-project.version = "DEV-SNAPSHOT"
-
-sourceCompatibility = 11
-
-mainClassName = 'lt.rieske.skeleton.SkeletonService'
-
-jacocoTestReport {
-    reports {
-        xml.enabled = true
-        html.enabled = true
+tasks {
+    wrapper {
+        gradleVersion = "5.6.4"
     }
+
+    application {
+        mainClassName = 'lt.rieske.skeleton.SkeletonService'
+    }
+
+    jacocoTestReport {
+        reports {
+            xml.enabled = true
+            html.enabled = true
+        }
+    }
+
+    checkstyle {
+        configFile = new File(rootDir, "checkstyle.xml")
+    }
+
+    run {
+        args 'server', './configuration/production.yml'
+    }
+
+    run.dependsOn check
 }
 
-checkstyle {
-    configFile = new File(rootDir, "checkstyle.xml")
-}
-
-jar.dependsOn check
 
 dependencies {
     compileOnly "org.projectlombok:lombok:${lombokVersion}"
     annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
 
-    compile "io.dropwizard:dropwizard-core:${dropwizardVersion}"
-    compile "io.dropwizard:dropwizard-client:${dropwizardVersion}"
+    implementation "io.dropwizard:dropwizard-core:${dropwizardVersion}"
+    implementation "io.dropwizard:dropwizard-client:${dropwizardVersion}"
 
-    testCompile "junit:junit:4.12"
-    testCompile "org.assertj:assertj-core:3.14.0"
-    testCompile "io.dropwizard:dropwizard-testing:${dropwizardVersion}"
-    testCompile "org.mockito:mockito-core:3.1.0"
+    implementation("javax.xml.bind:jaxb-api:2.2.11")
+    implementation("javax.activation:activation:1.1.1")
+
+    testImplementation "junit:junit:4.12"
+    testImplementation "org.assertj:assertj-core:3.14.0"
+    testImplementation "io.dropwizard:dropwizard-testing:${dropwizardVersion}"
+    testImplementation "org.mockito:mockito-core:3.1.0"
 }
 
-jar {
-    def manifestClasspath = configurations.compile.collect { "lib/" + it.getName() }.join(' ')
-    manifest {
-        attributes 'Build-Date': new Date(),
-                'Build-JDK': System.getProperty('java.version'),
-                'Main-Class': "$mainClassName",
-                'Class-Path': manifestClasspath
-    }
-}
-
-task copyDependenciesToDistribution(type: Copy) {
-    from configurations.runtime
-    into "build/distributions/lib"
-}
-
-assemble {
-    dependsOn copyDependenciesToDistribution
-}
-
-run {
-    args 'server', './configuration/production.yml'
-}
-
-run.dependsOn check
-
-wrapper {
-    gradleVersion = "5.6.4"
-}

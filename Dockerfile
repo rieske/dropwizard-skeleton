@@ -1,8 +1,9 @@
-FROM openjdk:11.0.1-jdk-slim
+FROM openjdk:11.0.5-jdk-slim
 
 EXPOSE 8080 8081
-ADD build/libs/*.jar /opt/service/service.jar
-ADD build/distributions/lib /opt/service/lib
 WORKDIR /opt/service
 
-ENTRYPOINT ["java", "-jar", "service.jar", "server"]
+ENTRYPOINT /opt/service/dropwizard-skeleton/bin/dropwizard-skeleton server /opt/configuration/production.yml
+
+ADD configuration/production.yml /opt/configuration/production.yml
+ADD build/distributions/dropwizard-skeleton.tar /opt/service/
