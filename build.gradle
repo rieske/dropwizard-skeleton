@@ -50,7 +50,7 @@ dependencies {
     compile "io.dropwizard:dropwizard-client:${dropwizardVersion}"
 
     testCompile "junit:junit:4.12"
-    testCompile "org.assertj:assertj-core:3.11.1"
+    testCompile "org.assertj:assertj-core:3.14.0"
     testCompile "io.dropwizard:dropwizard-testing:${dropwizardVersion}"
     testCompile "org.mockito:mockito-core:2.23.4"
 }
