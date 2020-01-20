@@ -89,6 +89,6 @@ dependencies {
 
     componentTestImplementation(configurations.implementation)
     componentTestImplementation("org.testcontainers:testcontainers:1.12.4")
-    componentTestImplementation("io.rest-assured:rest-assured:4.1.2")
+    componentTestImplementation("io.rest-assured:rest-assured:4.2.0")
 }
 
