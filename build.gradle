@@ -88,7 +88,7 @@ dependencies {
     testImplementation "io.dropwizard:dropwizard-testing:${dropwizardVersion}"
 
     componentTestImplementation(configurations.implementation)
-    componentTestImplementation("org.testcontainers:testcontainers:1.12.4")
+    componentTestImplementation("org.testcontainers:testcontainers:1.14.2")
     componentTestImplementation("io.rest-assured:rest-assured:4.3.0")
 }
 
