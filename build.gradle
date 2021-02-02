@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        dropwizardVersion = '2.0.2'
+        dropwizardVersion = '2.0.19'
         lombokVersion = '1.18.12'
     }
 }
