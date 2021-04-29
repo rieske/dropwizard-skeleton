@@ -1,0 +1,42 @@
+version: 2
+updates:
+- package-ecosystem: gradle
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "03:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: com.github.kt3k.coveralls
+    versions:
+    - 2.11.0
+  - dependency-name: com.github.spotbugs
+    versions:
+    - 4.6.0
+    - 4.6.2
+    - 4.7.0
+  - dependency-name: io.dropwizard:dropwizard-testing
+    versions:
+    - 2.0.18
+    - 2.0.19
+    - 2.0.20
+  - dependency-name: io.dropwizard:dropwizard-client
+    versions:
+    - 2.0.18
+    - 2.0.19
+    - 2.0.20
+  - dependency-name: io.dropwizard:dropwizard-core
+    versions:
+    - 2.0.18
+    - 2.0.19
+    - 2.0.20
+  - dependency-name: org.testcontainers:testcontainers
+    versions:
+    - 1.15.1
+    - 1.15.2
+  - dependency-name: org.projectlombok:lombok
+    versions:
+    - 1.18.18
+  - dependency-name: org.junit.jupiter:junit-jupiter-api
+    versions:
+    - 5.7.0
